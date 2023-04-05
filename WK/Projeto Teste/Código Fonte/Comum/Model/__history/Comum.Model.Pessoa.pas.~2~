@@ -1,0 +1,41 @@
+unit Comum.Model.Pessoa;
+
+interface
+
+uses Comum.Model.Default, System.Math;
+
+type
+
+  TPessoa = class(Comum.Model.Default.TDefault)
+  private
+    FNMPrimeiro : String;
+    FDTRegistro : TDate;
+    FNMSegundo  : String;
+    FDSDocumento: String;
+    FIDPessoa   : Integer;
+    FFLNatureza : Integer;
+    procedure SetIDPessoa(const Value: Integer);
+  public
+    property IDPessoa   : Integer read FIDPessoa    write SetIDPessoa;
+    property FLNatureza : Integer read FFLNatureza  write FFLNatureza;
+    property DSDocumento: String  read FDSDocumento write FDSDocumento;
+    property NMPrimeiro : String  read FNMPrimeiro  write FNMPrimeiro;
+    property NMSegundo  : String  read FNMSegundo   write FNMSegundo;
+    property DTRegistro : TDate   read FDTRegistro  write FDTRegistro;
+  end;
+
+implementation
+
+uses
+  Vcl.Dialogs;
+
+{ TPessoa }
+
+procedure TPessoa.SetIDPessoa(const Value: Integer);
+begin
+  if FIDPessoa <= ZeroValue then
+    ShowMessage('O Campo ID Pessoa só aceita números inteiros positivos!');
+  FIDPessoa := Value;
+end;
+
+end.

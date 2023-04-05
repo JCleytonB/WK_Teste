@@ -1,0 +1,25 @@
+object ServerMethods1: TServerMethods1
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+  object FDGUIxWaitCursor: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 40
+    Top = 16
+  end
+  object FDPhysPgDriverLink: TFDPhysPgDriverLink
+    VendorHome = 'F:\Work\WK \Projeto Teste\C'#243'digo Fonte\Server'
+    Left = 40
+    Top = 80
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'Database=db_wk_teste'
+      'User_Name=postgres'
+      'Password=sysdba'
+      'DriverID=PG')
+    LoginPrompt = False
+    Left = 136
+    Top = 24
+  end
+end

@@ -1,0 +1,72 @@
+unit Server.Controller.ServerMethodsUnit;
+
+interface
+
+uses System.SysUtils, System.Classes, System.Json,
+    DataSnap.DSProviderDataModuleAdapter,
+    Datasnap.DSServer, Datasnap.DSAuth, FireDAC.UI.Intf, FireDAC.VCLUI.Wait,
+  FireDAC.Phys.PGDef, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG, Data.DB,
+  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Datasnap.Provider, FireDAC.Comp.DataSet;
+
+type
+  TServerMethods1 = class(TDSServerModule)
+    FDGUIxWaitCursor: TFDGUIxWaitCursor;
+    FDPhysPgDriverLink: TFDPhysPgDriverLink;
+    FDConnection: TFDConnection;
+    FDQueryPessoa: TFDQuery;
+    FDQueryEndereco: TFDQuery;
+    DataSetProviderPessoa: TDataSetProvider;
+    DataSetProviderEndereco: TDataSetProvider;
+    FDQuery1: TFDQuery;
+    procedure DSServerModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function EchoString(Value: string): string;
+    function ReverseString(Value: string): string;
+    function GetPessoaID: string;
+  end;
+
+implementation
+
+
+{$R *.dfm}
+
+
+uses System.StrUtils;
+
+procedure TServerMethods1.DSServerModuleCreate(Sender: TObject);
+begin
+  FDPhysPgDriverLink.VendorHome := '.\';
+  FDConnection.Connected := True;
+end;
+
+function TServerMethods1.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TServerMethods1.GetPessoaID: string;
+begin
+  try
+    FDQuery1.Close;
+    FDQuery1.SQL.Clear;
+    FDQuery1.SQL.Add('SELECT nextval(''pessoa_idpessoa_seq'') as seq');
+    FDQuery1.Open;
+    Result := FDQuery1.FieldByName('seq').AsString;
+  except
+    Result := '0';
+  end;
+end;
+
+function TServerMethods1.ReverseString(Value: string): string;
+begin
+  Result := System.StrUtils.ReverseString(Value);
+end;
+
+end.
+

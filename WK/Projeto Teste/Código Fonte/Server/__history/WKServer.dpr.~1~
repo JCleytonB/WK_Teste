@@ -1,0 +1,20 @@
+program WKServer;
+
+uses
+  Vcl.Forms,
+  Web.WebReq,
+  IdHTTPWebBrokerBridge,
+  Server.View.Main in 'View\Server.View.Main.pas' {Form1},
+  Server.Controller.ServerMethodsUnit in 'Controller\Server.Controller.ServerMethodsUnit.pas' {ServerMethods1: TDSServerModule},
+  Server.Controller.ServerContainerUnit in 'Controller\Server.Controller.ServerContainerUnit.pas' {ServerContainer1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TServerContainer1, ServerContainer1);
+  Application.Run;
+end.
+

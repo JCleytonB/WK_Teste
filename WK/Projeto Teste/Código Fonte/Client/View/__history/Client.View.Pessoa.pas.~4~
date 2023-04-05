@@ -1,0 +1,62 @@
+unit Client.View.Pessoa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Client.Controller.DModule,
+  Comum.Model.Pessoa, Data.DB, Datasnap.DBClient, Datasnap.DSConnect, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    LabeledEdit1: TLabeledEdit;
+    LabeledEdit2: TLabeledEdit;
+    LabeledEdit3: TLabeledEdit;
+    LabeledEdit4: TLabeledEdit;
+    LabeledEdit5: TLabeledEdit;
+    LabeledEdit6: TLabeledEdit;
+    Button1: TButton;
+    Button2: TButton;
+    DBGrid1: TDBGrid;
+    Panel3: TPanel;
+    Button3: TButton;
+    Button4: TButton;
+    DSPCEndereco: TDSProviderConnection;
+    cdsEndereco: TClientDataSet;
+    dscEndereco: TDataSource;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    FPessoa: Comum.Model.Pessoa.TPessoa;
+    function GetPessoa: Comum.Model.Pessoa.TPessoa;
+    { Private declarations }
+  public
+    property PPessoa: Comum.Model.Pessoa.TPessoa read GetPessoa write FPessoa;
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm1 }
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if Assigned(PPessoa) then
+    FreeAndNil(PPessoa);
+end;
+
+function TForm1.GetPessoa: Comum.Model.Pessoa.TPessoa;
+begin
+  if Assigned(PPessoa) then
+    Result := FPessoa
+  else
+    PPessoa := Comum.Model.Pessoa.TPessoa.Create;
+end;
+
+end.

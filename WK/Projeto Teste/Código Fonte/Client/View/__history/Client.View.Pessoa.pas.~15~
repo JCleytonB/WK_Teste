@@ -1,0 +1,136 @@
+unit Client.View.Pessoa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Client.Controller.DModule,
+  Comum.Model.Pessoa, Data.DB, Datasnap.DBClient, Datasnap.DSConnect, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Client.Uteis.TiposEspeciais;
+
+type
+  TfrmPessoa = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    edtCodigo: TLabeledEdit;
+    edtNatureza: TLabeledEdit;
+    edtDocumento: TLabeledEdit;
+    edtPrimeiroNome: TLabeledEdit;
+    edtSegundoNome: TLabeledEdit;
+    edtCEP: TLabeledEdit;
+    Button1: TButton;
+    Button2: TButton;
+    DBGrid1: TDBGrid;
+    Panel3: TPanel;
+    Button3: TButton;
+    Button4: TButton;
+    dscEndereco: TDataSource;
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    FPessoa: Comum.Model.Pessoa.TPessoa;
+    FTipoCadastro: Client.Uteis.TiposEspeciais.TTipoCadastro;
+    function GetPessoa: Comum.Model.Pessoa.TPessoa;
+    function DoSave: Boolean;
+  public
+    procedure LoadPessoa;
+    property Pessoa      : Comum.Model.Pessoa.TPessoa                read GetPessoa     write FPessoa;
+    property TipoCadastro: Client.Uteis.TiposEspeciais.TTipoCadastro read FTipoCadastro write FTipoCadastro;
+  end;
+
+var
+  frmPessoa: TfrmPessoa;
+
+implementation
+
+uses
+  System.Math;
+
+{$R *.dfm}
+
+{ TForm1 }
+
+procedure TfrmPessoa.Button3Click(Sender: TObject);
+begin
+ if DoSave then
+   Close;
+end;
+
+procedure TfrmPessoa.Button4Click(Sender: TObject);
+begin
+  Close;
+end;
+
+function TfrmPessoa.DoSave: Boolean;
+  function GetPessoa: Boolean;
+  begin
+     // Faltou validação se os campos obrigatórios estão preenchidos.
+     // Faltou validar se os valores correspondem aos tipos dos campos.
+    Pessoa.IDPessoa    := StrToInt(edtCodigo.Text);
+    Pessoa.FLNatureza  := ifThen(edtNatureza.Text <> '', StrToInt(edtNatureza.Text), 0);
+    Pessoa.DSDocumento := edtDocumento.Text;
+    Pessoa.NMPrimeiro  := edtPrimeiroNome.Text;
+    Pessoa.NMSegundo   := edtSegundoNome.Text;
+  end;
+
+begin
+  try
+    if GetPessoa then
+    begin
+      if TipoCadastro = tcInsert then
+        Client.Controller.DModule.DataModule1.cdsPessoa.Insert
+      else
+        Client.Controller.DModule.DataModule1.cdsPessoa.Edit;
+
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('idpessoa').AsInteger    := Pessoa.IDPessoa;
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('flnatureza').AsInteger  := Pessoa.FLNatureza;
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('dsdocumento').AsString  := Pessoa.DSDocumento;
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('nmorimeiro').AsString   := Pessoa.NMPrimeiro;
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('nmsegundo').AsString    := Pessoa.NMSegundo;
+      Client.Controller.DModule.DataModule1.cdsPessoa.FieldByName('dtregistro').AsDateTime := Now;
+      Client.Controller.DModule.DataModule1.cdsPessoa.Post;
+
+      Client.Controller.DModule.DataModule1.cdsPessoa.ApplyUpdates(0);
+      Client.Controller.DModule.DataModule1.cdsEndereco.ApplyUpdates(0);
+
+      Client.Controller.DModule.DataModule1.cdsPessoa.Active := False;
+      Client.Controller.DModule.DataModule1.cdsPessoa.Active := True;
+      Result := True;
+    end;
+  except
+    ShowMessage('Erro ao tentar salvar registro!');
+    Result := False;
+  end;
+end;
+
+procedure TfrmPessoa.FormDestroy(Sender: TObject);
+begin
+  if Assigned(Pessoa) then
+    Pessoa.Free;
+end;
+
+procedure TfrmPessoa.FormShow(Sender: TObject);
+begin
+  LoadPessoa;
+end;
+
+function TfrmPessoa.GetPessoa: Comum.Model.Pessoa.TPessoa;
+begin
+  if Assigned(Pessoa) then
+    Result := FPessoa
+  else
+    Pessoa := Comum.Model.Pessoa.TPessoa.Create;
+end;
+
+procedure TfrmPessoa.LoadPessoa;
+begin
+  edtCodigo.Text       := Pessoa.IDPessoa.ToString;
+  edtNatureza.Text     := Pessoa.FLNatureza.ToString;
+  edtDocumento.Text    := Pessoa.DSDocumento;
+  edtPrimeiroNome.Text := Pessoa.NMPrimeiro;
+  edtSegundoNome.Text  := Pessoa.NMSegundo;
+end;
+
+end.

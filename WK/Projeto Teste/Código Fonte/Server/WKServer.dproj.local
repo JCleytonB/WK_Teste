@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/01/07 12:33:15.000.571,=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 00:32:54.871,=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 00:32:56.036,=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2023/04/05 00:32:57.427,=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2023/04/05 00:50:19.431,F:\Work\WK\Projeto Teste\Código Fonte\Server\View\Server.View.Main.dfm=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/04/05 00:50:19.431,F:\Work\WK\Projeto Teste\Código Fonte\Server\View\Server.View.Main.pas=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 00:50:53.544,F:\Work\WK\Projeto Teste\Código Fonte\Server\Controller\Server.Controller.ServerContainerUnit.dfm=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.dfm</Transaction>
+    <Transaction>2023/04/05 00:50:53.544,F:\Work\WK\Projeto Teste\Código Fonte\Server\Controller\Server.Controller.ServerContainerUnit.pas=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2023/04/05 00:51:09.015,F:\Work\WK\Projeto Teste\Código Fonte\Server\Controller\Server.Controller.ServerMethodsUnit.pas=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2023/04/05 00:51:09.015,F:\Work\WK\Projeto Teste\Código Fonte\Server\Controller\Server.Controller.ServerMethodsUnit.dfm=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.dfm</Transaction>
+    <Transaction>2023/04/05 00:51:39.503,F:\Work\WK\Projeto Teste\Código Fonte\Server\WKServer.dproj=C:\Users\jcley\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/04/05 00:52:42.033,=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 00:53:59.358,F:\Work\WK\Projeto Teste\Código Fonte\Comum\Model\Comum.Model.Default.pas=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 00:55:14.335,=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 01:00:31.922,F:\Work\WK\Projeto Teste\Código Fonte\Comum\Model\Comum.Model.Pessoa.pas=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 01:01:00.769,=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 01:03:58.847,F:\Work\WK\Projeto Teste\Código Fonte\Comum\Model\Comum.Model.Endereco.pas=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 01:05:33.487,=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+    <Transaction>2023/04/05 01:15:07.598,F:\Work\WK\Projeto Teste\Código Fonte\Server\Controller\Server.Controller.ControlePadrao.pas=F:\Work\WK\Projeto Teste\Código Fonte\Server\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

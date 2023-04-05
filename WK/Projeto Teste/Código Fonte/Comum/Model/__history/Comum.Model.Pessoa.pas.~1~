@@ -1,0 +1,28 @@
+unit Comum.Model.Pessoa;
+
+interface
+
+uses Comum.Model.Default;
+
+type
+
+  TPessoa = class(Comum.Model.Default.TDefault)
+  private
+    FNMPrimeiro : String;
+    FDTRegistro : TDate;
+    FNMSegundo  : String;
+    FDSDocumento: String;
+    FIDPessoa   : Integer;
+    FFLNatureza : Integer;
+  public
+    property IDPessoa   : Integer read FIDPessoa    write FIDPessoa;
+    property FLNatureza : Integer read FFLNatureza  write FFLNatureza;
+    property DSDocumento: String  read FDSDocumento write FDSDocumento;
+    property NMPrimeiro : String  read FNMPrimeiro  write FNMPrimeiro;
+    property NMSegundo  : String  read FNMSegundo   write FNMSegundo;
+    property DTRegistro : TDate   read FDTRegistro  write FDTRegistro;
+  end;
+
+implementation
+
+end.

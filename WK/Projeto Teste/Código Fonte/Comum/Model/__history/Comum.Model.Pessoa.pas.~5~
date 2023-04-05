@@ -1,0 +1,68 @@
+unit Comum.Model.Pessoa;
+
+interface
+
+uses Comum.Model.Default, System.Math;
+
+type
+
+  TPessoa = class(Comum.Model.Default.TDefault)
+  private
+    FNMPrimeiro : String;
+    FDTRegistro : TDate;
+    FNMSegundo  : String;
+    FDSDocumento: String;
+    FIDPessoa   : Integer;
+    FFLNatureza : Integer;
+    FInstance   : TPessoa;
+    procedure SetIDPessoa(const Value: Integer);
+    function GetIDPessoa: Integer;
+  public
+    class function GetInstance: TPessoa;
+    class property IDPessoa   : Integer read GetIDPessoa  write SetIDPessoa default 0;
+    class property FLNatureza : Integer read FFLNatureza  write FFLNatureza;
+    class property DSDocumento: String  read FDSDocumento write FDSDocumento;
+    class property NMPrimeiro : String  read FNMPrimeiro  write FNMPrimeiro;
+    class property NMSegundo  : String  read FNMSegundo   write FNMSegundo;
+    class property DTRegistro : TDate   read FDTRegistro  write FDTRegistro;
+    constructor Create;
+    constructor CreatePrivate;
+  end;
+
+implementation
+
+uses
+  Vcl.Dialogs, System.SysUtils;
+
+{ TPessoa }
+
+constructor TPessoa.Create;
+begin
+  raise Exception.Create('Para obter uma instância de TPessoa utilize TPessoa.GetInstance !');
+end;
+
+constructor TPessoa.CreatePrivate;
+begin
+  inherited Create;
+end;
+
+function TPessoa.GetIDPessoa: Integer;
+begin
+  Result := FIDPessoa;
+end;
+
+class function TPessoa.GetInstance: TPessoa;
+begin
+  if not Assigned(FInstance) then
+    FInstance := TPessoa.CreatePrivate;
+  Result := FInstance;
+end;
+
+procedure TPessoa.SetIDPessoa(const Value: Integer);
+begin
+  if Value <= ZeroValue then
+    ShowMessage('O Campo ID Pessoa, só aceita números inteiros positivos!');
+  FIDPessoa := Value;
+end;
+
+end.
